@@ -2,9 +2,17 @@
 // Address all the TODOs to make the tests pass!
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+//This exercise has several points:
+//1.  The definition of enum must point out the explict types, for example, the ChangeColor((u8, u8, u8))
+//can not use the color behind, the color has to follow the enum
+//2.   In the impl block, if wants to call other functions which are also
+// in the impl block, try self.fun()
 
 enum Message {
+    ChangeColor((u8, u8, u8)),
+    Echo(String),
+    Move(Point),
+    Quit,
     // TODO: implement the message variant types based on their usage below
 }
 
@@ -37,6 +45,12 @@ impl State {
     }
 
     fn process(&mut self, message: Message) {
+        match message{
+            Message::ChangeColor(color) => self.change_color(color),
+            Message::Echo(str) =>  self.echo(str),
+            Message::Move(p) => self.move_position(p),
+            Message::Quit => self.quit(),
+        }
         // TODO: create a match expression to process the different message variants
     }
 }
